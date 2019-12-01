@@ -1,5 +1,0 @@
-package hackerrank
-
-object CycleInLL {
-
-}
