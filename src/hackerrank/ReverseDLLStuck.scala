@@ -1,5 +1,7 @@
 package hackerrank
 
+import scala.annotation.tailrec
+
 object ReverseDLLStuck {
 
   class DoublyLinkedListNode(var data: Int, var next: DoublyLinkedListNode = null, var prev: DoublyLinkedListNode = null) {
@@ -33,20 +35,18 @@ object ReverseDLLStuck {
    * }
    *
    */
-  //  def reverse(llist: DoublyLinkedListNode): DoublyLinkedListNode = {
-  //
-  //
-  //    def reverseList(h: DoublyLinkedListNode, currentList: DoublyLinkedList): Unit = {
-  //      if (h.next == null) {
-  //        new DoublyLinkedListNode(h.data, h.prev, h.next)
-  //      }
-  //      else {
-  //
-  //      }
-  //
-  //
-  //    }
-  //
-  //
-  //  }
+  def reverse(llist: DoublyLinkedListNode): DoublyLinkedListNode = {
+    if (llist == null) llist
+
+    @tailrec
+    def helper(node1: DoublyLinkedListNode, node2: DoublyLinkedListNode): DoublyLinkedListNode = {
+      val newNode1 = new DoublyLinkedListNode(node1.data, node1.prev, node1.next)
+      val newNode2 = new DoublyLinkedListNode(node2.data, node2.prev, node2.next)
+      if (newNode2.prev == null) newNode2
+      else helper(node2, node2.next)
+    }
+
+    helper(llist, llist.next)
+
+  }
 }
